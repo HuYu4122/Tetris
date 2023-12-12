@@ -1,6 +1,6 @@
-#include "raylib.h"
 #include <time.h>
 #include <string.h>
+#include "raylib.h"
 #include "Tetris.h"
 
 int stage[] = 
@@ -234,14 +234,14 @@ const int zTetromino270[] =
 
 const Color colorTypes[8] =
 {
-    {255,255,85,255},
-    {85,43,158,255},
-    {56,255,85,255},
-    {255,255,63,255},
-    {255,42,85,255},
-    {255,100,85,255},
-    {97,5,85,255},
-    {85,45,63,255},
+    {127,     127,      127,    255},
+    {0,     255,    255,    255},
+    {255,   255,    0,      255},
+    {128,   0,      128,    255},
+    {0,     255,    0,      255},
+    {255,   0,      0,      255},
+    {0,     0,      255,    255},
+    {255,   127,    127,    255},
 };
 #pragma endregion
 
@@ -255,22 +255,6 @@ const int *tetrominoTypes[7][4] =
     {jTetromino0, jTetromino90, jTetromino180, jTetromino270},
     {lTetromino0, lTetromino90, lTetromino180, lTetromino270},
 };
-
-void drawTetromino(const Color currentColor, const int startOffsetX, const int startOffsetY, const int tetrominoStartX, const int tetrominoStartY, const int *tetromino)
-{
-    for(int y = 0; y < TETROMINO_SIZE; y++)
-    {
-        for(int x = 0; x < TETROMINO_SIZE; x++)
-        {
-            const int offset = y * TETROMINO_SIZE + x;
-
-            if(tetromino[offset] == 1)
-            {
-                DrawRectangle((x + tetrominoStartX) * TILE_SIZE + startOffsetX, (y + tetrominoStartY) * TILE_SIZE + startOffsetY, TILE_SIZE, TILE_SIZE, currentColor);
-            }
-        }
-    }
-}
 
 void ResetLines(int startLineY)
 {
@@ -290,7 +274,7 @@ void ResetLines(int startLineY)
     }   
 }
 
-void DeleteLines()
+void DeleteLines(int score)
 {
     for (int y = 0; y < STAGE_HEIGHT - 1; y++)
     {
@@ -329,11 +313,15 @@ int main(int argc, char** argv, char** environ)
     const int tetrominoStartX = STAGE_WIDTH / 2;
     const int tetrominoStartY = 0;
 
+    const int whenIncreaseSpeed = 20;
+
     int currentTetrominoX = tetrominoStartX;
     int currentTetrominoY = tetrominoStartY;
 
     int currentTetrominoType = GetRandomValue(0, 6);
     int currentRotation = 0;
+    int score = 0;
+    float increaseSpeedDown = 1;
 
     const float moveTetrominoDownTimer = 1.f;
     float timeToMoveTetrominoDown = moveTetrominoDownTimer;
@@ -367,8 +355,9 @@ int main(int argc, char** argv, char** environ)
 
     while(!WindowShouldClose())
     {
-        timeToMoveTetrominoDown -= GetFrameTime();
+        timeToMoveTetrominoDown -= GetFrameTime() * increaseSpeedDown;
 
+        #pragma region KeyInput
         if (IsKeyPressed(KEY_SPACE))
         {
             const int lastRotation = currentRotation;
@@ -410,13 +399,8 @@ int main(int argc, char** argv, char** environ)
                 currentTetrominoY++;
                 timeToMoveTetrominoDown = moveTetrominoDownTimer;
             }
-
             else
             {
-                // const int currentTetrominoOffset = currentTetrominoY * STAGE_WIDTH + currentTetrominoX;
-                
-                // stage[currentTetrominoOffset] = 1;
-
                 for(int y = 0; y < TETROMINO_SIZE; y++)
                 {
                     for(int x = 0; x < TETROMINO_SIZE; x++)
@@ -434,8 +418,13 @@ int main(int argc, char** argv, char** environ)
                     }
                 }
 
-                DeleteLines();
+                DeleteLines(score);
 
+                if(score % whenIncreaseSpeed <= 0)
+                {
+                    increaseSpeedDown += 0.2f;
+                }
+                score += 4;
                 currentTetrominoX = tetrominoStartX;
                 currentTetrominoY = tetrominoStartY;
 
@@ -444,9 +433,12 @@ int main(int argc, char** argv, char** environ)
                 currentColor = GetRandomValue(0, 7);
             }
         }
+        #pragma endregion
 
         BeginDrawing();
-        ClearBackground(RED);
+        ClearBackground(BLACK);
+
+        DrawText(TextFormat("Score: %08i", score), windowWidth / 4, 0, 30, RED);
 
         for(int y = 0; y < STAGE_HEIGHT; y++)
         {
@@ -460,13 +452,14 @@ int main(int argc, char** argv, char** environ)
                     DrawRectangle(x * TILE_SIZE + startOffsetX, y * TILE_SIZE + startOffsetY, TILE_SIZE, TILE_SIZE, colorTypes[color-1]);
                 }
 
-                DrawRectangleLines(x * TILE_SIZE + startOffsetX, y * TILE_SIZE + startOffsetY, TILE_SIZE, TILE_SIZE, BLACK);
+                DrawRectangleLines(x * TILE_SIZE + startOffsetX, y * TILE_SIZE + startOffsetY, TILE_SIZE, TILE_SIZE, WHITE);
             }
         }
         
-        drawTetromino(colorTypes[currentColor],startOffsetX, startOffsetY, currentTetrominoX, currentTetrominoY, tetrominoTypes[currentTetrominoType][currentRotation]);
-
-        
+        drawTetromino(
+            colorTypes[currentColor],
+            startOffsetX, startOffsetY, currentTetrominoX, currentTetrominoY, tetrominoTypes[currentTetrominoType][currentRotation]
+            );
 
         EndDrawing();
     }
