@@ -1,5 +1,5 @@
-#include "Tetris.h"
-#include "raylib.h"
+#include "../Tetris.h"
+#include "../raylib.h"
 
 void drawTetromino(
     const Color currentColor,

@@ -1,4 +1,4 @@
-#include "Tetris.h"
+#include "../Tetris.h"
 
 extern int stage[];
 

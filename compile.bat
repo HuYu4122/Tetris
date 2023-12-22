@@ -1,0 +1,1 @@
+clang.exe -o Tetris.exe Tetris.c Function/DrawTetromino.c Function/CheckCollision.c Function/DeleteLines.c Function/ResetLines.c -l raylibdll

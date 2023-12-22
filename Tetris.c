@@ -1,5 +1,6 @@
 #include <time.h>
 #include <string.h>
+#include <stdio.h>
 #include "raylib.h"
 #include "Tetris.h"
 
@@ -30,207 +31,213 @@ int stage[] =
 };
 
 #pragma region Tetromino
-const int lTetromino0[] =
-{
-    0, 1, 0, 0,
-    0, 1, 0, 0,
-    0, 1, 1, 0,
-    0, 0, 0, 0,
-};
+    #pragma region L
+        const int lTetromino0[] =
+        {
+            0, 1, 0, 0,
+            0, 1, 0, 0,
+            0, 1, 1, 0,
+            0, 0, 0, 0,
+        };
 
-const int lTetromino90[] =
-{
-    0, 0, 0, 0,
-    1, 1, 1, 0,
-    1, 0, 0, 0,
-    0, 0, 0, 0,
-};
+        const int lTetromino90[] =
+        {
+            0, 0, 0, 0,
+            1, 1, 1, 0,
+            1, 0, 0, 0,
+            0, 0, 0, 0,
+        };
 
-const int lTetromino180[] =
-{
-    1, 1, 0, 0,
-    0, 1, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 0, 0,
-};
+        const int lTetromino180[] =
+        {
+            1, 1, 0, 0,
+            0, 1, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 0, 0,
+        };
 
-const int lTetromino270[] =
-{
-    0, 0, 1, 0,
-    1, 1, 1, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-};
+        const int lTetromino270[] =
+        {
+            0, 0, 1, 0,
+            1, 1, 1, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+        };
+    #pragma endregion
+    #pragma region J
+        const int jTetromino0[] =
+        {
+            0, 1, 0, 0,
+            0, 1, 0, 0,
+            1, 1, 0, 0,
+            0, 0, 0, 0,
+        };
 
-const int jTetromino0[] =
-{
-    0, 1, 0, 0,
-    0, 1, 0, 0,
-    1, 1, 0, 0,
-    0, 0, 0, 0,
-};
+        const int jTetromino90[] =
+        {
+            1, 0, 0, 0,
+            1, 1, 1, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+        };
 
-const int jTetromino90[] =
-{
-    1, 0, 0, 0,
-    1, 1, 1, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-};
+        const int jTetromino180[] =
+        {
+            0, 1, 1, 0,
+            0, 1, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 0, 0,
+        };
 
-const int jTetromino180[] =
-{
-    0, 1, 1, 0,
-    0, 1, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 0, 0,
-};
+        const int jTetromino270[] =
+        {
+            0, 0, 0, 0,
+            1, 1, 1, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 0,
+        };
+    #pragma endregion
+    #pragma region O
+        const int oTetromino[] =
+        {
+            1, 1, 0, 0,
+            1, 1, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+        };
+    #pragma endregion
+    #pragma region S
+        const int sTetromino0[] =
+        {
+            0, 0, 0, 0,
+            0, 1, 1, 0,
+            1, 1, 0, 0,
+            0, 0, 0, 0,
+        };
 
-const int jTetromino270[] =
-{
-    0, 0, 0, 0,
-    1, 1, 1, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 0,
-};
+        const int sTetromino90[] =
+        {
+            0, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 1, 1, 0,
+            0, 0, 1, 0,
+        };
 
+        const int sTetromino180[] =
+        {
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+            0, 1, 1, 0,
+            1, 1, 0, 0,
+        };
 
-const int oTetromino[] =
-{
-    1, 1, 0, 0,
-    1, 1, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-};
+        const int sTetromino270[] =
+        {
+            0, 0, 0, 0,
+            1, 0, 0, 0,
+            1, 1, 0, 0,
+            0, 1, 0, 0,
+        };
+    #pragma endregion
+    #pragma region T
+        const int tTetromino0[] =
+        {
+            0, 0, 0, 0,
+            1, 1, 1, 0,
+            0, 1, 0, 0,
+            0, 0, 0, 0,
+        };
 
-const int sTetromino0[] =
-{
-    0, 0, 0, 0,
-    0, 1, 1, 0,
-    1, 1, 0, 0,
-    0, 0, 0, 0,
-};
+        const int tTetromino90[] =
+        {
+            0, 1, 0, 0,
+            1, 1, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 0, 0,
+        };
 
-const int sTetromino90[] =
-{
-    0, 0, 0, 0,
-    0, 1, 0, 0,
-    0, 1, 1, 0,
-    0, 0, 1, 0,
-};
+        const int tTetromino180[] =
+        {
+            0, 1, 0, 0,
+            1, 1, 1, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+        };
 
-const int sTetromino180[] =
-{
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 1, 1, 0,
-    1, 1, 0, 0,
-};
+        const int tTetromino270[] =
+        {
+            1, 0, 0, 0,
+            1, 1, 0, 0,
+            1, 0, 0, 0,
+            0, 0, 0, 0,
+        };
+    #pragma endregion
+    #pragma region I
+        const int iTetromino0[] =
+        {
+            0, 1, 0, 0,
+            0, 1, 0, 0,
+            0, 1, 0, 0,
+            0, 1, 0, 0,
+        };
 
-const int sTetromino270[] =
-{
-    0, 0, 0, 0,
-    1, 0, 0, 0,
-    1, 1, 0, 0,
-    0, 1, 0, 0,
-};
+        const int iTetromino90[] =
+        {
+            0, 0, 0, 0,
+            1, 1, 1, 1,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+        };
 
+        const int iTetromino180[] =
+        {
+            0, 1, 0, 0,
+            0, 1, 0, 0,
+            0, 1, 0, 0,
+            0, 1, 0, 0,
+        };
 
-const int tTetromino0[] =
-{
-    0, 0, 0, 0,
-    1, 1, 1, 0,
-    0, 1, 0, 0,
-    0, 0, 0, 0,
-};
+        const int iTetromino270[] =
+        {
+            0, 0, 0, 0,
+            1, 1, 1, 1,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+        };
+    #pragma endregion
+    #pragma region Z
+        const int zTetromino0[] =
+        {
+            1, 1, 0, 0,
+            0, 1, 1, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+        };
 
-const int tTetromino90[] =
-{
-    0, 1, 0, 0,
-    1, 1, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 0, 0,
-};
+        const int zTetromino90[] =
+        {
+            0, 0, 1, 0,
+            0, 1, 1, 0,
+            0, 1, 0, 0,
+            0, 0, 0, 0,
+        };
 
-const int tTetromino180[] =
-{
-    0, 1, 0, 0,
-    1, 1, 1, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-};
+        const int zTetromino180[] =
+        {
+            0, 0, 0, 0,
+            1, 1, 0, 0,
+            0, 1, 1, 0,
+            0, 0, 0, 0,
+        };
 
-const int tTetromino270[] =
-{
-    1, 0, 0, 0,
-    1, 1, 0, 0,
-    1, 0, 0, 0,
-    0, 0, 0, 0,
-};
-
-const int iTetromino0[] =
-{
-    0, 1, 0, 0,
-    0, 1, 0, 0,
-    0, 1, 0, 0,
-    0, 1, 0, 0,
-};
-
-const int iTetromino90[] =
-{
-    0, 0, 0, 0,
-    1, 1, 1, 1,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-};
-
-const int iTetromino180[] =
-{
-    0, 1, 0, 0,
-    0, 1, 0, 0,
-    0, 1, 0, 0,
-    0, 1, 0, 0,
-};
-
-const int iTetromino270[] =
-{
-    0, 0, 0, 0,
-    1, 1, 1, 1,
-    0, 0, 0, 0,
-    0, 0, 0, 0,
-};
-
-const int zTetromino0[] =
-{
-    0, 0, 0, 0,
-    1, 1, 0, 0,
-    0, 1, 1, 0,
-    0, 0, 0, 0,
-};
-
-const int zTetromino90[] =
-{
-    0, 1, 0, 0,
-    0, 1, 1, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 0,
-};
-
-const int zTetromino180[] =
-{
-    0, 0, 0, 0,
-    0, 1, 1, 0,
-    1, 1, 0, 0,
-    0, 0, 0, 0,
-};
-
-const int zTetromino270[] =
-{
-    1, 0, 0, 0,
-    1, 1, 0, 0,
-    0, 1, 0, 0,
-    0, 0, 0, 0,
-};
+        const int zTetromino270[] =
+        {
+            0, 1, 0, 0,
+            1, 1, 0, 0,
+            1, 0, 0, 0,
+            0, 0, 0, 0,
+        };
+    #pragma endregion
 
 const Color colorTypes[8] =
 {
@@ -245,6 +252,7 @@ const Color colorTypes[8] =
 };
 #pragma endregion
 
+#pragma region Tetromino Types
 const int *tetrominoTypes[7][4] =
 {
     {zTetromino0, zTetromino90, zTetromino180, zTetromino270},
@@ -255,61 +263,15 @@ const int *tetrominoTypes[7][4] =
     {jTetromino0, jTetromino90, jTetromino180, jTetromino270},
     {lTetromino0, lTetromino90, lTetromino180, lTetromino270},
 };
-
-void ResetLines(int startLineY)
-{
-    for (int y = startLineY; y >= 0; y--)
-    {
-        for (int x = 1; x < STAGE_WIDTH - 1; x++)
-        {
-            const int offset = y * STAGE_WIDTH + x;
-            const int offset_below = (y+1) * STAGE_WIDTH + x;
-
-            if (stage[offset_below] == 0 && stage[offset] > 0)
-            {
-                stage[offset_below] = stage[offset];
-                stage[offset] = 0;
-            }
-        }
-    }   
-}
-
-void DeleteLines(int score)
-{
-    for (int y = 0; y < STAGE_HEIGHT - 1; y++)
-    {
-        int checkLine = 1;
-
-        for (int x = 1; x < STAGE_WIDTH - 1; x++)
-        {
-            const int offset = y * STAGE_WIDTH + x;
-
-            if (stage[offset] == 0)
-            {
-                checkLine = 0;
-                break;
-            }
-        }
-
-        if(checkLine)
-        {
-            const int offset = y * STAGE_WIDTH + 1;
-            memset(stage+offset,0,(STAGE_WIDTH-2)* sizeof(int));
-
-            ResetLines(y);
-        }
-    }   
-}
+#pragma endregion
 
 int main(int argc, char** argv, char** environ)
 {
+    InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Title");
+    InitAudioDevice();
+    SetTargetFPS(60);
+
     #pragma region Variable
-    const int windowWidth = 600; 
-    const int windowHeight = 700; 
-
-    const int startOffsetX = (windowWidth / 2) - ((STAGE_WIDTH * TILE_SIZE) / 2);
-    const int startOffsetY = (windowHeight / 2) - ((STAGE_HEIGHT * TILE_SIZE) / 2);
-
     const int tetrominoStartX = STAGE_WIDTH / 2;
     const int tetrominoStartY = 0;
 
@@ -320,45 +282,31 @@ int main(int argc, char** argv, char** environ)
 
     int currentTetrominoType = GetRandomValue(0, 6);
     int currentRotation = 0;
+    int currentColor = GetRandomValue(0, 7);
     int score = 0;
-    float increaseSpeedDown = 1;
 
+    float increaseSpeedDown = 1;
     const float moveTetrominoDownTimer = 1.f;
     float timeToMoveTetrominoDown = moveTetrominoDownTimer;
-    int currentColor = GetRandomValue(0, 7);
+    #pragma endregion
 
     time_t unixTime;
-    #pragma endregion
-
     time(&unixTime);
-
     SetRandomSeed(unixTime);
 
-    #pragma region Comment
-    // TraceLog(LOG_INFO, "Number of arguments : %d", argc);
-
-    // for(int i = 0; i < argc; i++)
-    // {
-    //     TraceLog(LOG_INFO, "Argument : %d = %s", i, argv[i]);
-    // }
-
-    // while(*environ != 0)
-    // {
-    //     TraceLog(LOG_INFO, "Argument : %s", *environ);
-    //     environ++;
-    // }
-    #pragma endregion
-
-    InitWindow(windowWidth, windowHeight, "Title");
-
-    SetTargetFPS(60);
+    Music background_Music = LoadMusicStream("Sound/TetrisMusic.mp3");
+    PlayMusicStream(background_Music);
+    SetMasterVolume(0.1f);
 
     while(!WindowShouldClose())
     {
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        UpdateMusicStream(background_Music);
         timeToMoveTetrominoDown -= GetFrameTime() * increaseSpeedDown;
 
         #pragma region KeyInput
-        if (IsKeyPressed(KEY_SPACE))
+        if (IsKeyPressed(KEY_UP))
         {
             const int lastRotation = currentRotation;
 
@@ -435,10 +383,7 @@ int main(int argc, char** argv, char** environ)
         }
         #pragma endregion
 
-        BeginDrawing();
-        ClearBackground(BLACK);
-
-        DrawText(TextFormat("Score: %08i", score), windowWidth / 4, 0, 30, RED);
+        DrawText(TextFormat("Score: %08i", score), WINDOW_WIDTH / 4, 0, 30, RED);
 
         for(int y = 0; y < STAGE_HEIGHT; y++)
         {
@@ -449,20 +394,22 @@ int main(int argc, char** argv, char** environ)
 
                 if(stage[offset] != 0)
                 {
-                    DrawRectangle(x * TILE_SIZE + startOffsetX, y * TILE_SIZE + startOffsetY, TILE_SIZE, TILE_SIZE, colorTypes[color-1]);
+                    DrawRectangle(x * TILE_SIZE + STARTOFFSET_X, y * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE, TILE_SIZE, colorTypes[color-1]);
                 }
 
-                DrawRectangleLines(x * TILE_SIZE + startOffsetX, y * TILE_SIZE + startOffsetY, TILE_SIZE, TILE_SIZE, WHITE);
+                DrawRectangleLines(x * TILE_SIZE + STARTOFFSET_X, y * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE, TILE_SIZE, WHITE);
             }
         }
         
         drawTetromino(
             colorTypes[currentColor],
-            startOffsetX, startOffsetY, currentTetrominoX, currentTetrominoY, tetrominoTypes[currentTetrominoType][currentRotation]
+            STARTOFFSET_X, STARTOFFSET_Y, currentTetrominoX, currentTetrominoY, tetrominoTypes[currentTetrominoType][currentRotation]
             );
 
         EndDrawing();
     }
+    UnloadMusicStream(background_Music);
+    CloseAudioDevice();
 
     return 0;
 }
