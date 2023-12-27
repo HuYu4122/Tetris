@@ -6,28 +6,28 @@
 
 int stage[] = 
 {
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
-    8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   0,    0,      0,      0,      0,      0,      0,      0,      0,      0,      WALL,
+    WALL,   WALL, WALL,   WALL,   WALL,   WALL,   WALL,   WALL,   WALL,   WALL,   WALL,   WALL,
 };
 
 #pragma region Tetromino
@@ -256,15 +256,16 @@ const int *tetrominoTypes[7][4] =
 
 const Color colorTypes[8] =
 {
-    {127,     127,      127,    255},
-    {0,     255,    255,    255},
-    {255,   255,    0,      255},
-    {128,   0,      128,    255},
-    {0,     255,    0,      255},
-    {255,   0,      0,      255},
-    {0,     0,      255,    255},
-    {255,   127,    127,    255},
+    {0,     255,      255,    255},
+    {255,     255,    0,    255},
+    {128,   0,    128,      255},
+    {0,   255,      0,    255},
+    {255,     0,    0,      255},
+    {0,   0,      255,      255},
+    {255,     127,      0,    255},
+    {127,   127,    127,    255},
 };
+
 int main(int argc, char** argv, char** environ)
 {
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Title");
@@ -280,7 +281,6 @@ int main(int argc, char** argv, char** environ)
 
     int currentTetrominoType = GetRandomValue(0, 6);
     int currentRotation = 0;
-    int currentColor = GetRandomValue(0, 7);
     int score = 0;
 
     float increaseSpeedDown = 1;
@@ -354,7 +354,7 @@ int main(int argc, char** argv, char** environ)
                                     {
                                         const int offset_stage = (y + currentTetrominoY) * STAGE_WIDTH + (x + currentTetrominoX);
 
-                                        stage[offset_stage] = currentColor+1;
+                                        stage[offset_stage] = currentTetrominoType + 1;
                                     }
                                 }
                             }
@@ -364,7 +364,6 @@ int main(int argc, char** argv, char** environ)
                             if(score % WHENINCREASESPEED <= 0) increaseSpeedDown += 0.2f;
                             
                             currentTetrominoType = GetRandomValue(0, 6);
-                            currentColor = GetRandomValue(0, 7);
                             currentTetrominoX = tetrominoStartX;
                             currentTetrominoY = tetrominoStartY;
                             currentRotation = 0;
@@ -380,16 +379,22 @@ int main(int argc, char** argv, char** environ)
                 for(int x = 0; x < STAGE_WIDTH; x++)
                 {
                     const int offset = y * STAGE_WIDTH + x;
-                    const int color = stage[offset];
+                    const int color = stage[offset] - 1;
+                    const int posX = x * TILE_SIZE + STARTOFFSET_X;
+                    const int posY = y * TILE_SIZE + STARTOFFSET_Y;
 
-                    if(stage[offset] != 0)
-                        DrawRectangle(x * TILE_SIZE + STARTOFFSET_X, y * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE, TILE_SIZE, colorTypes[color - 1]);
-                    DrawRectangleLines(x * TILE_SIZE + STARTOFFSET_X, y * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE, TILE_SIZE, LIGHTGRAY);
+                    if(stage[offset] == 8)
+                        DrawRectangle(posX, posY, TILE_SIZE, TILE_SIZE, colorTypes[WALL - 1]);
+                    else if(stage[offset] == 0)
+                        DrawRectangle(posX, posY, TILE_SIZE, TILE_SIZE, RAYWHITE);
+                        else
+                        DrawRectangle(posX, posY, TILE_SIZE, TILE_SIZE, colorTypes[color]);
+                    DrawRectangleLines(posX, posY, TILE_SIZE, TILE_SIZE, LIGHTGRAY);
                 }
             }
             
             drawTetromino(
-                colorTypes[currentColor],
+                colorTypes[currentTetrominoType],
                 STARTOFFSET_X, STARTOFFSET_Y,
                 currentTetrominoX, currentTetrominoY,
                 tetrominoTypes[currentTetrominoType][currentRotation]
@@ -398,7 +403,7 @@ int main(int argc, char** argv, char** environ)
         }
         else
         {
-            DrawText(TextFormat("Game Over"), WINDOW_WIDTH / 4, WINDOW_HEIGHT / 3, 60, RED);
+            GameOver();
         }
         EndDrawing();
     }
