@@ -6,28 +6,28 @@
 
 int stage[] = 
 {
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8,
+    8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8,
 };
 
 #pragma region Tetromino
@@ -239,17 +239,6 @@ int stage[] =
         };
     #pragma endregion
 
-const Color colorTypes[8] =
-{
-    {127,     127,      127,    255},
-    {0,     255,    255,    255},
-    {255,   255,    0,      255},
-    {128,   0,      128,    255},
-    {0,     255,    0,      255},
-    {255,   0,      0,      255},
-    {0,     0,      255,    255},
-    {255,   127,    127,    255},
-};
 #pragma endregion
 
 #pragma region Tetromino Types
@@ -265,6 +254,17 @@ const int *tetrominoTypes[7][4] =
 };
 #pragma endregion
 
+const Color colorTypes[8] =
+{
+    {127,     127,      127,    255},
+    {0,     255,    255,    255},
+    {255,   255,    0,      255},
+    {128,   0,      128,    255},
+    {0,     255,    0,      255},
+    {255,   0,      0,      255},
+    {0,     0,      255,    255},
+    {255,   127,    127,    255},
+};
 int main(int argc, char** argv, char** environ)
 {
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Title");
@@ -274,8 +274,6 @@ int main(int argc, char** argv, char** environ)
     #pragma region Variable
     const int tetrominoStartX = STAGE_WIDTH / 2;
     const int tetrominoStartY = 0;
-
-    const int whenIncreaseSpeed = 20;
 
     int currentTetrominoX = tetrominoStartX;
     int currentTetrominoY = tetrominoStartY;
@@ -302,110 +300,106 @@ int main(int argc, char** argv, char** environ)
     {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        UpdateMusicStream(background_Music);
-        timeToMoveTetrominoDown -= GetFrameTime() * increaseSpeedDown;
 
-        #pragma region KeyInput
-        if (IsKeyPressed(KEY_UP))
+        if(!CheckCollision(currentTetrominoX,currentTetrominoY,tetrominoTypes[currentTetrominoType][currentRotation]))
         {
-            const int lastRotation = currentRotation;
+            UpdateMusicStream(background_Music);
+            timeToMoveTetrominoDown -= GetFrameTime() * increaseSpeedDown;
 
-            currentRotation++;
-
-            if (currentRotation > 3)
-            {
-                currentRotation = 0;
-            }
-
-            if (CheckCollision(currentTetrominoX,currentTetrominoY,tetrominoTypes[currentTetrominoType][currentRotation]))
-            {
-                currentRotation = lastRotation;
-            }
-        }
-
-        if (IsKeyPressed(KEY_RIGHT))
-        {
-            // No need to check overflow, wall is your protector
-            if (!CheckCollision(currentTetrominoX+1,currentTetrominoY,tetrominoTypes[currentTetrominoType][currentRotation]))
-            {
-                currentTetrominoX++;
-            }
-        }
-        if (IsKeyPressed(KEY_LEFT))
-        {
-            // No need to check overflow, wall is your protector
-            if (!CheckCollision(currentTetrominoX-1,currentTetrominoY,tetrominoTypes[currentTetrominoType][currentRotation]))
-            {
-                currentTetrominoX--;
-            }
-        }
-
-        if(timeToMoveTetrominoDown <= 0 || IsKeyPressed(KEY_DOWN))
-        {            
-            if(!CheckCollision(currentTetrominoX,currentTetrominoY+1,tetrominoTypes[currentTetrominoType][currentRotation]))
-            {
-                currentTetrominoY++;
-                timeToMoveTetrominoDown = moveTetrominoDownTimer;
-            }
-            else
-            {
-                for(int y = 0; y < TETROMINO_SIZE; y++)
-                {
-                    for(int x = 0; x < TETROMINO_SIZE; x++)
+            #pragma region KeyInput
+                #pragma region Rotation Tetromino
+                    if (IsKeyPressed(KEY_UP))
                     {
-                        const int offset = y * TETROMINO_SIZE + x;
+                        const int lastRotation = currentRotation;
+                        currentRotation++;
 
-                        const int *tetromino = tetrominoTypes[currentTetrominoType][currentRotation];
+                        if (currentRotation > 3) currentRotation = 0;
 
-                        if(tetromino[offset] == 1)
+                        if (CheckCollision(currentTetrominoX,currentTetrominoY,tetrominoTypes[currentTetrominoType][currentRotation]))
+                            currentRotation = lastRotation;
+                    }
+                #pragma endregion
+
+                #pragma region Lateral Movement
+                    if (IsKeyPressed(KEY_RIGHT))
+                        // No need to check overflow, wall is your protector
+                        if (!CheckCollision(currentTetrominoX+1,currentTetrominoY,tetrominoTypes[currentTetrominoType][currentRotation]))
+                            currentTetrominoX++;
+
+                    if (IsKeyPressed(KEY_LEFT))
+                        // No need to check overflow, wall is your protector
+                        if (!CheckCollision(currentTetrominoX-1,currentTetrominoY,tetrominoTypes[currentTetrominoType][currentRotation]))
+                            currentTetrominoX--;
+                #pragma endregion
+
+                #pragma region Move Down
+                    if(timeToMoveTetrominoDown <= 0 || IsKeyDown(KEY_DOWN))
+                    {            
+                        if(!CheckCollision(currentTetrominoX,currentTetrominoY+1,tetrominoTypes[currentTetrominoType][currentRotation]))
                         {
-                            const int offset_stage = (y + currentTetrominoY) * STAGE_WIDTH + (x + currentTetrominoX);
+                            currentTetrominoY++;
+                            timeToMoveTetrominoDown = moveTetrominoDownTimer;
+                        }
+                        else
+                        {
+                            for(int y = 0; y < TETROMINO_SIZE; y++)
+                            {
+                                for(int x = 0; x < TETROMINO_SIZE; x++)
+                                {
+                                    const int offset = y * TETROMINO_SIZE + x;
 
-                            stage[offset_stage] = currentColor+1;
+                                    const int *tetromino = tetrominoTypes[currentTetrominoType][currentRotation];
+
+                                    if(tetromino[offset] == 1)
+                                    {
+                                        const int offset_stage = (y + currentTetrominoY) * STAGE_WIDTH + (x + currentTetrominoX);
+
+                                        stage[offset_stage] = currentColor+1;
+                                    }
+                                }
+                            }
+
+                            DeleteLines(score);
+
+                            if(score % WHENINCREASESPEED <= 0) increaseSpeedDown += 0.2f;
+                            
+                            currentTetrominoType = GetRandomValue(0, 6);
+                            currentColor = GetRandomValue(0, 7);
+                            currentTetrominoX = tetrominoStartX;
+                            currentTetrominoY = tetrominoStartY;
+                            currentRotation = 0;
                         }
                     }
-                }
+                #pragma endregion
+            #pragma endregion
 
-                DeleteLines(score);
+            DrawText(TextFormat("Score: %08i", score), WINDOW_WIDTH / 4, 0, 30, RED);
 
-                if(score % whenIncreaseSpeed <= 0)
-                {
-                    increaseSpeedDown += 0.2f;
-                }
-                score += 4;
-                currentTetrominoX = tetrominoStartX;
-                currentTetrominoY = tetrominoStartY;
-
-                currentTetrominoType = GetRandomValue(0, 6);
-                currentRotation = 0;
-                currentColor = GetRandomValue(0, 7);
-            }
-        }
-        #pragma endregion
-
-        DrawText(TextFormat("Score: %08i", score), WINDOW_WIDTH / 4, 0, 30, RED);
-
-        for(int y = 0; y < STAGE_HEIGHT; y++)
-        {
-            for(int x = 0; x < STAGE_WIDTH; x++)
+            for(int y = 0; y < STAGE_HEIGHT; y++)
             {
-                const int offset = y * STAGE_WIDTH + x;
-                const int color = stage[offset];
-
-                if(stage[offset] != 0)
+                for(int x = 0; x < STAGE_WIDTH; x++)
                 {
-                    DrawRectangle(x * TILE_SIZE + STARTOFFSET_X, y * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE, TILE_SIZE, colorTypes[color-1]);
+                    const int offset = y * STAGE_WIDTH + x;
+                    const int color = stage[offset];
+
+                    if(stage[offset] != 0)
+                        DrawRectangle(x * TILE_SIZE + STARTOFFSET_X, y * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE, TILE_SIZE, colorTypes[color - 1]);
+                    DrawRectangleLines(x * TILE_SIZE + STARTOFFSET_X, y * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE, TILE_SIZE, LIGHTGRAY);
                 }
-
-                DrawRectangleLines(x * TILE_SIZE + STARTOFFSET_X, y * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE, TILE_SIZE, WHITE);
             }
-        }
-        
-        drawTetromino(
-            colorTypes[currentColor],
-            STARTOFFSET_X, STARTOFFSET_Y, currentTetrominoX, currentTetrominoY, tetrominoTypes[currentTetrominoType][currentRotation]
-            );
+            
+            drawTetromino(
+                colorTypes[currentColor],
+                STARTOFFSET_X, STARTOFFSET_Y,
+                currentTetrominoX, currentTetrominoY,
+                tetrominoTypes[currentTetrominoType][currentRotation]
+                );
 
+        }
+        else
+        {
+            DrawText(TextFormat("Game Over"), WINDOW_WIDTH / 4, WINDOW_HEIGHT / 3, 60, RED);
+        }
         EndDrawing();
     }
     UnloadMusicStream(background_Music);

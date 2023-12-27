@@ -22,6 +22,7 @@ void DeleteLines(int score)
 
         if (checkLine)
         {
+            score++;
             DrawRectangle(STARTOFFSET_X, y * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE * STAGE_WIDTH, TILE_SIZE, WHITE);
             const int offset = y * STAGE_WIDTH + 1;
             memset(stage + offset, 0, (STAGE_WIDTH - 2) * sizeof(int));

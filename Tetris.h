@@ -8,7 +8,7 @@
 #define WINDOW_HEIGHT 700
 #define STARTOFFSET_X (WINDOW_WIDTH / 2) - ((STAGE_WIDTH * TILE_SIZE) / 2)
 #define STARTOFFSET_Y (WINDOW_HEIGHT / 2) - ((STAGE_HEIGHT * TILE_SIZE) / 2)
-#define SCORE 0
+#define WHENINCREASESPEED 20
 
 int CheckCollision(const int tetrominoStartX, const int tetrominoStartY, const int *tetromino);
 void drawTetromino(
