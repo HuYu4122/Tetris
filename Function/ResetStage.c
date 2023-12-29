@@ -1,8 +1,8 @@
-#include "../../Tetris.h"
+#include "../Tetris.h"
 
 extern int stage[];
 
-void InitGame()
+void ResetStage()
 {
     for (int y = 0; y < STAGE_HEIGHT; y++)
     {

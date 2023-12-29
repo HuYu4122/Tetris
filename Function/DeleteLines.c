@@ -1,10 +1,13 @@
 #include <string.h>
+#include <stdio.h>
 #include "../Tetris.h"
 
 extern int stage[];
+extern int score;
 
-void DeleteLines(int score)
+int DeleteLines(int *toDeleteLine)
 {
+    int line_Y;
     for (int y = 0; y < STAGE_HEIGHT - 1; y++)
     {
         int checkLine = 1;
@@ -22,11 +25,13 @@ void DeleteLines(int score)
 
         if (checkLine)
         {
-            score++;
-            DrawRectangle(STARTOFFSET_X, y * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE * STAGE_WIDTH, TILE_SIZE, WHITE);
             const int offset = y * STAGE_WIDTH + 1;
             memset(stage + offset, 0, (STAGE_WIDTH - 2) * sizeof(int));
             ResetLines(y);
+            score++;
+            line_Y = y;
+            *toDeleteLine = 1;
         }
     }
+    return line_Y;
 }

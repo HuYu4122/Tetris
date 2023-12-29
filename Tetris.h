@@ -7,11 +7,11 @@
 #define WALL 8
 #define WINDOW_WIDTH 600
 #define WINDOW_HEIGHT 700
+#define WHENINCREASESPEED 100
 #define STARTOFFSET_X (WINDOW_WIDTH / 2) - ((STAGE_WIDTH * TILE_SIZE) / 2)
 #define STARTOFFSET_Y (WINDOW_HEIGHT / 2) - ((STAGE_HEIGHT * TILE_SIZE) / 2)
-#define WHENINCREASESPEED 20
 
-void InitGame();
+void ResetStage();
 int CheckCollision(const int tetrominoStartX, const int tetrominoStartY, const int *tetromino);
 void drawTetromino(
     const Color currentColor,
@@ -21,5 +21,4 @@ void drawTetromino(
     const int tetrominoStartY,
     const int *tetromino);
 void ResetLines(int startLineY);
-void DeleteLines(int score);
-void GameOver();
+int DeleteLines(int *toDeleteLine);
