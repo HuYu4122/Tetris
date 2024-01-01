@@ -284,6 +284,7 @@ int main(int argc, char **argv, char **environ)
     SetTargetFPS(60);
 
 #pragma region Variable
+    const Color phantomTetromino = {127, 127, 127, 127};
     const int tetrominoStartX = STAGE_WIDTH / 2;
     const int tetrominoStartY = 0;
 
@@ -373,7 +374,7 @@ int main(int argc, char **argv, char **environ)
                 #pragma endregion
 
                 #pragma region Move Down
-                if (timeToMoveTetrominoDown <= 0 || IsKeyDown(KEY_DOWN))
+                if (timeToMoveTetrominoDown <= 0 || IsKeyPressed(KEY_DOWN))
                 {
                     if (!CheckCollision(currentTetrominoX, currentTetrominoY + 1, tetrominoTypes[currentTetrominoType][currentRotation]))
                     {
@@ -411,6 +412,19 @@ int main(int argc, char **argv, char **environ)
                     }
                 }
                 #pragma endregion
+                
+                #pragma region Speed Fall
+
+                if(IsKeyPressed(KEY_SPACE))
+                {
+                    while(!CheckCollision(currentTetrominoX, currentTetrominoY + 1, tetrominoTypes[currentTetrominoType][currentRotation]))
+                    {
+                        currentTetrominoY++;
+                    }
+                }
+
+                #pragma endregion
+                
                 #pragma endregion
             }
 
@@ -449,11 +463,25 @@ int main(int argc, char **argv, char **environ)
                 }
             }
             else
+            {
+                int phantomTetrominoY = currentTetrominoY;
+                while(!CheckCollision(currentTetrominoX, phantomTetrominoY + 1, tetrominoTypes[currentTetrominoType][currentRotation]))
+                {
+                    phantomTetrominoY++;
+                }
+                drawTetromino(
+                    phantomTetromino,
+                    STARTOFFSET_X, STARTOFFSET_Y,
+                    currentTetrominoX, phantomTetrominoY,
+                    tetrominoTypes[currentTetrominoType][currentRotation]);
+
                 drawTetromino(
                     colorTypes[currentTetrominoType],
                     STARTOFFSET_X, STARTOFFSET_Y,
                     currentTetrominoX, currentTetrominoY,
                     tetrominoTypes[currentTetrominoType][currentRotation]);
+            }
+                
         }
 
         if (gamePhase == GameOverPhase)
