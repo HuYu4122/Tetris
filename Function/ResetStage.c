@@ -1,6 +1,7 @@
 #include "../Tetris.h"
 
 extern int stage[];
+extern int tetromini[4];
 
 void ResetStage()
 {
@@ -12,5 +13,10 @@ void ResetStage()
             if (stage[offset] != WALL)
                 stage[offset] = 0;
         }
+    }
+
+    for(int i = 0; i < 4; i++)
+    {
+        tetromini[i] = GetRandomValue(0, 6);
     }
 }
