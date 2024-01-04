@@ -274,7 +274,7 @@ const Color colorTypes[8] =
 };
 
 int score = 0;
-int tetromini[4];
+int tetromini[ARRAYTETROMINI];
 
 int main(int argc, char **argv, char **environ)
 {
@@ -292,14 +292,14 @@ int main(int argc, char **argv, char **environ)
 
     int currentRotation = 0;
 
-    float timeDeleteLine = 1;
-    float countDeleteLine = timeDeleteLine;
-    int line_Y;
-    int toDeleteLine = 0;
+    const float maxTimerBreakLine = 1;
+    float countBreakLine = maxTimerBreakLine;
+    int lineToBreak;
+    int breakingLine = 0;
 
+    const float maxTimerMoveDownTetromino = 1.f;
+    float countMoveDownTetromino = maxTimerMoveDownTetromino;
     float increaseSpeedDown = 1;
-    const float moveTetrominoDownTimer = 1.f;
-    float timeToMoveTetrominoDown = moveTetrominoDownTimer;
 #pragma endregion
 
     time_t unixTime;
@@ -341,9 +341,9 @@ int main(int argc, char **argv, char **environ)
                 PlayMusicStream(gameover_Music);
             }
             UpdateMusicStream(background_Music);
-            if (!toDeleteLine)
+            if (!breakingLine)
             {
-                timeToMoveTetrominoDown -= GetFrameTime() * increaseSpeedDown;
+                countMoveDownTetromino -= GetFrameTime() * increaseSpeedDown;
 
                 #pragma region KeyInput
                 #pragma region Rotation Tetromino
@@ -373,12 +373,12 @@ int main(int argc, char **argv, char **environ)
                 #pragma endregion
 
                 #pragma region Move Down
-                if (timeToMoveTetrominoDown <= 0 || IsKeyPressed(KEY_DOWN))
+                if (countMoveDownTetromino <= 0 || IsKeyPressed(KEY_DOWN))
                 {
                     if (!CheckCollision(currentTetrominoX, currentTetrominoY + 1, tetrominoTypes[tetromini[0]][currentRotation]))
                     {
                         currentTetrominoY++;
-                        timeToMoveTetrominoDown = moveTetrominoDownTimer;
+                        countMoveDownTetromino = maxTimerMoveDownTetromino;
                     }
                     else
                     {
@@ -399,12 +399,12 @@ int main(int argc, char **argv, char **environ)
                             }
                         }
 
-                        line_Y = DeleteLines(&toDeleteLine);
+                        lineToBreak = DeleteLines(&breakingLine);
 
                         if (score != 0 && score % WHENINCREASESPEED == 0)
                             increaseSpeedDown += 0.2f;
 
-                        tetromini[0] = GetRandomValue(0, 6);
+                        GetTetromino();
                         currentTetrominoX = tetrominoStartX;
                         currentTetrominoY = tetrominoStartY;
                         currentRotation = 0;
@@ -428,19 +428,20 @@ int main(int argc, char **argv, char **environ)
             }
 
             DrawBase();
-            DrawNextTetromino(tetrominoTypes[0][0]);
+            DrawArrayTetromini();
+            
 
-            if (toDeleteLine)
+            if (breakingLine)
             {
-                if (countDeleteLine <= 0)
+                if (countBreakLine <= 0)
                 {
-                    countDeleteLine = timeDeleteLine;
-                    toDeleteLine = 0;
+                    countBreakLine = maxTimerBreakLine;
+                    breakingLine = 0;
                 }
                 else
                 {
-                    countDeleteLine -= GetFrameTime();
-                    DrawRectangle(STARTOFFSET_X + TILE_SIZE, line_Y * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE * (STAGE_WIDTH - 2), TILE_SIZE, BLACK);
+                    countBreakLine -= GetFrameTime();
+                    DrawRectangle(STARTOFFSET_X + TILE_SIZE, lineToBreak * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE * (STAGE_WIDTH - 2), TILE_SIZE, BLACK);
                 }
             }
             else

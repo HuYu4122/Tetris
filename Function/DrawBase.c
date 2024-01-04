@@ -6,7 +6,7 @@ extern int score;
 
 void DrawBase()
 {
-    DrawText(TextFormat("Score: %08i", score), WINDOW_WIDTH / 4, 0, 30, RED);
+    DrawText(TextFormat("Score: %08i", score), 100, 100, 30, RED);
 
     for (int y = 0; y < STAGE_HEIGHT; y++)
     {

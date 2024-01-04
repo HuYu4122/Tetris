@@ -10,6 +10,7 @@
 #define TILE_SIZE 24
 #define TETROMINO_SIZE 4
 #define WALL 8
+#define ARRAYTETROMINI 4
 #define WHENINCREASESPEED 100
 
 void ResetStage();
@@ -23,5 +24,6 @@ void drawTetromino(
     const int *tetromino);
 void ResetLines(int startLineY);
 int DeleteLines(int *toDeleteLine);
-void DrawNextTetromino(const int *tetromino);
+void DrawArrayTetromini();
 void DrawBase();
+void GetTetromino();
