@@ -5,7 +5,7 @@
 extern int stage[];
 extern int score;
 
-int DeleteLines(int *toDeleteLine)
+int DeleteLines(int *countLinesToDelete)
 {
     int line_Y;
     for (int y = 0; y < STAGE_HEIGHT - 1; y++)
@@ -30,7 +30,7 @@ int DeleteLines(int *toDeleteLine)
             ResetLines(y);
             score++;
             line_Y = y;
-            *toDeleteLine = 1;
+            *countLinesToDelete += 1;
         }
     }
     return line_Y;

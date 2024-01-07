@@ -270,7 +270,7 @@ const Color colorTypes[8] =
     {255,     0,    0,      255},
     {0,   0,      255,      255},
     {255,     127,      0,    255},
-    {127,   127,    127,    255},
+    {127,   127,    127,    255},   //WALL color
 };
 
 int score = 0;
@@ -295,7 +295,7 @@ int main(int argc, char **argv, char **environ)
     const float maxTimerBreakLine = 1;
     float countBreakLine = maxTimerBreakLine;
     int lineToBreak;
-    int breakingLine = 0;
+    int countLinesToDelete = 0;
 
     const float maxTimerMoveDownTetromino = 1.f;
     float countMoveDownTetromino = maxTimerMoveDownTetromino;
@@ -341,7 +341,7 @@ int main(int argc, char **argv, char **environ)
                 PlayMusicStream(gameover_Music);
             }
             UpdateMusicStream(background_Music);
-            if (!breakingLine)
+            if (!countLinesToDelete)
             {
                 countMoveDownTetromino -= GetFrameTime() * increaseSpeedDown;
 
@@ -399,7 +399,7 @@ int main(int argc, char **argv, char **environ)
                             }
                         }
 
-                        lineToBreak = DeleteLines(&breakingLine);
+                        lineToBreak = DeleteLines(&countLinesToDelete);
 
                         if (score != 0 && score % WHENINCREASESPEED == 0)
                             increaseSpeedDown += 0.2f;
@@ -431,17 +431,21 @@ int main(int argc, char **argv, char **environ)
             DrawArrayTetromini();
             
 
-            if (breakingLine)
+            if (countLinesToDelete != 0)
             {
+                
                 if (countBreakLine <= 0)
                 {
                     countBreakLine = maxTimerBreakLine;
-                    breakingLine = 0;
+                    countLinesToDelete = 0;
                 }
                 else
                 {
                     countBreakLine -= GetFrameTime();
-                    DrawRectangle(STARTOFFSET_X + TILE_SIZE, lineToBreak * TILE_SIZE + STARTOFFSET_Y, TILE_SIZE * (STAGE_WIDTH - 2), TILE_SIZE, BLACK);
+                    DrawRectangle(
+                        STARTOFFSET_X + TILE_SIZE, (lineToBreak - countLinesToDelete + 1) * TILE_SIZE + STARTOFFSET_Y,
+                        TILE_SIZE * (STAGE_WIDTH - 2), countLinesToDelete * TILE_SIZE,
+                        BLACK);
                 }
             }
             else

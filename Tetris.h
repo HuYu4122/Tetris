@@ -10,7 +10,7 @@
 #define TILE_SIZE 24
 #define TETROMINO_SIZE 4
 #define WALL 8
-#define ARRAYTETROMINI 4
+#define ARRAYTETROMINI 3
 #define WHENINCREASESPEED 100
 
 void ResetStage();
