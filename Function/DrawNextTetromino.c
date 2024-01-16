@@ -1,4 +1,5 @@
 #include "../Tetris.h"
+#include <stdio.h>
 
 extern Color colorTypes[];
 extern int *tetrominoTypes[7][4];
@@ -6,16 +7,15 @@ extern int tetromini[ARRAYTETROMINI];
 
 void DrawArrayTetromini()
 {
-    const int startOffSetX = (WINDOW_WIDTH - 350);
-    const int startOffSetY = 50;
+    const int nextOffSetX = (WINDOW_WIDTH - 350);
     int plus = 0;
 
-    DrawRectangleLines(startOffSetX, startOffSetY, TETROMINO_SIZE * TILE_SIZE, TETROMINO_SIZE * TILE_SIZE, LIGHTGRAY);
+    DrawRectangleLines(nextOffSetX, STARTOFFSET_Y, TETROMINO_SIZE * TILE_SIZE, TETROMINO_SIZE * TILE_SIZE, LIGHTGRAY);
     for (int i = 1; i < ARRAYTETROMINI; i++)
     {
         drawTetromino(
             colorTypes[tetromini[i]],
-            startOffSetX, startOffSetY + plus,
+            nextOffSetX, STARTOFFSET_Y + plus,
             0, 0,
             tetrominoTypes[tetromini[i]][0]);
         plus += TETROMINO_SIZE * TILE_SIZE;
