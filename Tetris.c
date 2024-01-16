@@ -295,8 +295,11 @@ int main(int argc, char **argv, char **environ)
     int holdTetromino = -1;
     Color holdTetrominoColor;
 
-    const float maxTimerBreakLine = 33;
-    int countBreakLine = maxTimerBreakLine;
+    int countLeftMove = TIMER;
+    int countRightMove = TIMER;
+    int countDownMove = 0;
+    int countBreakLine = TIMER;
+
     int lineToBreak;
     int countLinesToDelete = 0;
     int flashLine = 1;
@@ -365,19 +368,33 @@ int main(int argc, char **argv, char **environ)
 #pragma endregion
 
 #pragma region Lateral Movement
-                if (IsKeyPressed(KEY_RIGHT))
-                    // No need to check overflow, wall is your protector
-                    if (!CheckCollision(currentTetrominoX + 1, currentTetrominoY, tetrominoTypes[tetromini[0]][currentRotation]))
-                        currentTetrominoX++;
+                if (IsKeyDown(KEY_RIGHT))
+                {
+                    countRightMove++;
+                    if(countRightMove >= TIMER)
+                    {
+                        countRightMove = 0;
+                        // No need to check overflow, wall is your protector
+                        if (!CheckCollision(currentTetrominoX + 1, currentTetrominoY, tetrominoTypes[tetromini[0]][currentRotation]))
+                            currentTetrominoX++;
+                    }
+                }
 
-                if (IsKeyPressed(KEY_LEFT))
-                    // No need to check overflow, wall is your protector
-                    if (!CheckCollision(currentTetrominoX - 1, currentTetrominoY, tetrominoTypes[tetromini[0]][currentRotation]))
-                        currentTetrominoX--;
+                if (IsKeyDown(KEY_LEFT))
+                {
+                    countLeftMove++;
+                    if(countLeftMove >= TIMER)
+                    {
+                        countLeftMove = 0;
+                        // No need to check overflow, wall is your protector
+                        if (!CheckCollision(currentTetrominoX - 1, currentTetrominoY, tetrominoTypes[tetromini[0]][currentRotation]))
+                            currentTetrominoX--;
+                    }
+                }
 #pragma endregion
 
 #pragma region Move Down
-                if (countMoveDownTetromino <= 0 || IsKeyPressed(KEY_DOWN))
+                if (countMoveDownTetromino <= 0 || IsKeyDown(KEY_DOWN))
                 {
                     if (!CheckCollision(currentTetrominoX, currentTetrominoY + 1, tetrominoTypes[tetromini[0]][currentRotation]))
                     {
@@ -446,6 +463,7 @@ int main(int argc, char **argv, char **environ)
 
                 if(holdTetromino != -1)
                 {
+                    DrawRectangleLines(150, STARTOFFSET_Y, TETROMINO_SIZE * TILE_SIZE, TETROMINO_SIZE * TILE_SIZE, LIGHTGRAY);
                     drawTetromino(
                         holdTetrominoColor,
                         150, STARTOFFSET_Y,
@@ -478,7 +496,7 @@ int main(int argc, char **argv, char **environ)
                     flashLine = 1;
                 }
 
-                if (countBreakLine >= maxTimerBreakLine)
+                if (countBreakLine >= TIMER)
                 {
                     countBreakLine = 0;
                     countLinesToDelete = 0;

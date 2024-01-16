@@ -12,6 +12,7 @@
 #define WALL 8
 #define ARRAYTETROMINI 2
 #define WHENINCREASESPEED 100
+#define TIMER 33
 
 void ResetStage();
 int CheckCollision(const int tetrominoStartX, const int tetrominoStartY, const int *tetromino);
