@@ -25,7 +25,7 @@ void drawTetromino(
     const int *tetromino);
 void ResetLines(int startLineY);
 int DeleteLines(int *toDeleteLine);
-void DrawArrayTetromini();
-void DrawHoldTetromino(int holdTetromino, Color holdTetrominoColor);
+void DrawNextTetromino();
+void DrawTetrominoBase(const int pos_x);
 void DrawBase();
 void GetTetromino();
